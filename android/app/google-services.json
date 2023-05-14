@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "433749178712",
+    "project_id": "elred-85a90",
+    "storage_bucket": "elred-85a90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433749178712:android:abc6fda547c6b72d3ecd2d",
+        "android_client_info": {
+          "package_name": "com.example.elred_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433749178712-f26m47gvdd5eg3i2adjs4mnkdrc8ci2l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.elred_assignment",
+            "certificate_hash": "0b81a9788c64bd5dbdc3811bdaec72e3762a93ac"
+          }
+        },
+        {
+          "client_id": "433749178712-vl9f1ac0iqfgci232dmrvsejg1lhf26n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAftWc1GUC_zTiWYyDlkk8DIs7vEYOxIEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433749178712-vl9f1ac0iqfgci232dmrvsejg1lhf26n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

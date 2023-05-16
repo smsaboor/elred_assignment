@@ -29,20 +29,25 @@ class _CustomDateState extends State<CustomDate> {
   Widget build(BuildContext context) {
     return DateTimeField(
       controller: widget.controller,
+      style: TextStyle(color: Colors.white70,fontSize: 16),
       //editable: false,
       validator: widget.validator,
       decoration: InputDecoration(
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+         contentPadding:EdgeInsets.only(left: 10.0,bottom: 10),
+        // suffixIcon: Icon(Icons.cancel,color: Colors.black45,),
+        enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+                width: .3, color: Colors.white)),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(width: 1, color: Colors.cyan),
         ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black26, width: 1.0),
-        ),
-        border: const OutlineInputBorder(),
+        // border: const OutlineInputBorder(),
         labelText: widget.labelText,
-        labelStyle: const TextStyle(
-          fontSize: 14.0,
+        errorStyle: TextStyle(
+          color: Colors.white70,
         ),
+        labelStyle: const TextStyle(color: Colors.grey),
       ),
       format: DateFormat("yyyy-MM-dd"),
       onShowPicker: (context, currentValue) {

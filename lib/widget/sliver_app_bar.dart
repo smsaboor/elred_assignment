@@ -1,6 +1,5 @@
 import 'package:elred_assignment/provider/firebase.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class MySliverAppBar extends StatefulWidget {
@@ -13,9 +12,12 @@ class MySliverAppBar extends StatefulWidget {
 
 class _MySliverAppBarState extends State<MySliverAppBar> {
   @override
+  void initState() {
+    Provider.of<FirebaseProvider>(context,listen: false).getTaskFromFirebase();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('kk:mm:ss \n EEE d MMM').format(now);
     return SliverAppBar(
       pinned: true,
       snap: false,
@@ -24,8 +26,8 @@ class _MySliverAppBarState extends State<MySliverAppBar> {
       backgroundColor: Colors.indigo,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20.0),
-          bottomRight: Radius.circular(20.0), ), ),
+          bottomLeft: Radius.circular(0.0),
+          bottomRight: Radius.circular(0.0), ), ),
       expandedHeight: 220,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsetsDirectional.only(start: 60, bottom:20),
@@ -45,8 +47,9 @@ class _MySliverAppBarState extends State<MySliverAppBar> {
                 })
           ],
         ),
+        stretchModes: const [StretchMode.zoomBackground],
         background: ClipRRect(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15)),
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(0),bottomRight: Radius.circular(0)),
           child: Image.asset(
             'assets/images/mountain.png',
             fit: BoxFit.fill,

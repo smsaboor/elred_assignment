@@ -1,3 +1,6 @@
+import 'package:elred_assignment/bloc_design_pattern/bloc_demo/bloc/bloc_firebase_auth.dart';
+import 'package:elred_assignment/bloc_design_pattern/bloc_demo/events/auth_events.dart';
+import 'package:elred_assignment/bloc_design_pattern/cubit/cubit_firebase_authentication.dart';
 import 'package:elred_assignment/page/add_task.dart';
 import 'package:elred_assignment/provider/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -167,10 +170,13 @@ class _AppDrawerState extends State<AppDrawer> {
                             setState(() {
                               isLogoutPressed=true;
                             });
-                            final provider =
-                            Provider.of<GoogleSignInProvider>(
-                                context, listen: false);
-                            provider.logout();
+                            // final provider = Provider.of<GoogleSignInProvider>(
+                            //     context, listen: false);
+                            // provider.logout();
+                            // final provider = Provider.of<CubitFirebaseAuthentication>(
+                            //     context, listen: false);
+                            // provider.logout();
+                            context.read<BlocFirebaseAuth>().add(EventAuthSignOut());
                           },
                           child: Column(
                             children: [

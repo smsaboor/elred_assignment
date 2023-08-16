@@ -8,9 +8,11 @@ import 'handle_response.dart';
 
 class FirebaseProvider extends ChangeNotifier {
   // provider to handle firebase operations
-  late FirebaseResponse responseAddingTask;
-  late FirebaseResponse responseUpdatingTask;
-  late FirebaseResponse responseDeletingTask;
+  late FirebaseResponse<int> responseAddingTask;
+  late FirebaseResponse<int> responseUpdatingTask;
+  late FirebaseResponse<int> responseDeletingTask;
+  var token;
+  get getToken => token;
 
   initializingState() {
     responseAddingTask = FirebaseResponse.initial('Add Task');
@@ -25,6 +27,7 @@ class FirebaseProvider extends ChangeNotifier {
   FirebaseResponse get getResponseDeletingTask => responseDeletingTask;
 
   static final collection = FirebaseFirestore.instance.collection('task');
+  static final collectionToken = FirebaseFirestore.instance.collection('token');
   int totalTasks = 0;
 
 
@@ -40,7 +43,7 @@ class FirebaseProvider extends ChangeNotifier {
     await delayForSeconds(2);
     try {
       await collection.doc(userId).collection(userId).doc().set(data);
-      responseAddingTask = FirebaseResponse.completed('task added successfully!');
+      responseAddingTask = FirebaseResponse.completed('task added successfully!',0);
       Util.snackBar(
           context: context,
           data: responseAddingTask.message!,
@@ -63,7 +66,7 @@ class FirebaseProvider extends ChangeNotifier {
     await delayForSeconds(2);
     try {
       await collection.doc(userId).collection(userId).doc(docId).update(data);
-      responseUpdatingTask = FirebaseResponse.completed('task updated successfully!');
+      responseUpdatingTask = FirebaseResponse.completed('task updated successfully!',0);
       Util.snackBar(
           context: context,
           data: responseUpdatingTask.message!,
@@ -92,7 +95,7 @@ class FirebaseProvider extends ChangeNotifier {
     try {
       await collection.doc(user!.uid).collection(user.uid).doc(docId).delete();
       responseDeletingTask =
-          FirebaseResponse.completed('task deleted successfully!');
+          FirebaseResponse.completed('task deleted successfully!',0);
       Util.snackBar(
           context: context,
           data: responseDeletingTask.message!,
@@ -115,5 +118,16 @@ class FirebaseProvider extends ChangeNotifier {
       notifyListeners();
     });
   }
+  getAgoraToken() async {
+    final user = FirebaseAuth.instance.currentUser;
+    collectionToken.doc(user!.uid).get().then((myDocuments) {
+      token = myDocuments;
+      print("objectto:${user!.uid}");
+      print("objecttoken:${token['uid']}");
+      print("objecttoken:${token['token']}");
+      notifyListeners();
+    });
+  }
+
 }
 

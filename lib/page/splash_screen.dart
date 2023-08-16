@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:elred_assignment/bloc_design_pattern/cubit/cubit_firebase_authentication.dart';
 import 'package:elred_assignment/page/home_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:elred_assignment/bloc_design_pattern/cubit/pages/cubit_home_page.dart';
+import 'package:provider/provider.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
   @override
@@ -18,6 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    print('MediaQuery: ${window.physicalSize}');
+    Provider.of<CubitFirebaseAuthentication>(context,listen: false).checkUserSignIn();
     super.initState();
     Timer(const Duration(seconds: 5), () {
       setState(() {
@@ -58,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
         )
       ]),
     )
-        : HomePage();
+        : CubitHomePage();
   }
 }
 
